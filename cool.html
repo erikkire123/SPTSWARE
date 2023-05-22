@@ -14,7 +14,7 @@
     .container {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     .content {
@@ -80,6 +80,18 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .tabs ul li a {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -107,7 +119,7 @@
     <div class="content">
       <section id="home" class="active">
         <h1>Welcome to the Home Page!</h1>
-        ye so wsg guys
+        <!-- Home page content -->
       </section>
 
       <section id="info">
