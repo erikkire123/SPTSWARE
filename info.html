@@ -7,7 +7,7 @@
 <body>
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="home.html">Home</a></li>
       <li><a href="info.html">Info</a></li>
       <li><a href="credits.html">Credits</a></li>
     </ul>
@@ -21,3 +21,75 @@
   <script src="script.js"></script>
 </body>
 </html>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #99c2ff;
+}
+
+.content {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+}
+
+/* Add any additional styling to customize your website */
+
+/* Page Transitions */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+</style>
+<script>
+  // Smooth page transitions using JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+  const links = document.querySelectorAll('nav ul li a');
+
+  for (const link of links) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      const target = document.querySelector('.content');
+
+      target.classList.add('fade-out');
+
+      setTimeout(function() {
+        window.location = href;
+      }, 500); // Adjust the duration (in milliseconds) for the fade-out effect
+    });
+  }
+});
+</script>
