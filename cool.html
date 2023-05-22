@@ -12,8 +12,14 @@
     }
 
     .tabs {
+      position: fixed;
+      left: 0;
+      top: 0;
       background-color: #222;
       padding: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .tabs ul {
@@ -23,22 +29,25 @@
     }
 
     .tabs ul li {
-      display: inline;
-      margin-right: 10px;
+      margin-bottom: 10px;
     }
 
     .tabs ul li a {
       color: #fff;
       text-decoration: none;
       transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 5px;
     }
 
     .tabs ul li a:hover {
       color: #99c2ff;
+      background-color: #333;
     }
 
     .content {
       padding: 20px;
+      margin-left: 150px; /* Adjust the value based on the width of the tabs */
     }
 
     h1 {
@@ -51,6 +60,12 @@
 
     .content section.active {
       display: block;
+      animation: fade-in 0.5s ease-in-out;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
   <script>
