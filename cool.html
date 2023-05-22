@@ -44,28 +44,35 @@
     h1 {
       font-size: 28px;
     }
+
+    .content section {
+      display: none;
+    }
+
+    .content section.active {
+      display: block;
+    }
   </style>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const links = document.querySelectorAll('.tabs ul li a');
-    const sections = document.querySelectorAll('.content section');
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const links = document.querySelectorAll('.tabs ul li a');
+      const sections = document.querySelectorAll('.content section');
 
-    links.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
+      links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
 
-        sections.forEach(function(section) {
-          section.classList.remove('active');
+          sections.forEach(function(section) {
+            section.classList.remove('active');
+          });
+
+          targetSection.classList.add('active');
         });
-
-        targetSection.classList.add('active');
       });
     });
-  });
-</script>
-
+  </script>
 </head>
 <body>
   <div class="tabs">
