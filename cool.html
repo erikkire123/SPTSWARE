@@ -32,6 +32,7 @@
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
     .tabs ul {
@@ -83,9 +84,14 @@
 
     /* Responsive Styles */
     @media (max-width: 768px) {
+      .tabs ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
       .tabs ul li a {
-        padding: 10px;
-        font-size: 14px;
+        flex: 1;
+        margin: 5px;
       }
 
       h1 {
@@ -118,8 +124,8 @@
   <div class="container">
     <div class="content">
       <section id="home" class="active">
-        <h1>Welcome to the Home Page!</h1>
-        <!-- Home page content -->
+        <h1>SPTSWARE</h1>
+        EASY & FUN 2 USE
       </section>
 
       <section id="info">
@@ -130,7 +136,6 @@
       <section id="credits">
         <h1>Credits Page</h1>
         Made By ieric#1339 / 919651959689072650
-        
       </section>
     </div>
 
