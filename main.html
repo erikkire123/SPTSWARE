@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Your Website</title>
   <style>
-    body {
+      body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -107,6 +108,47 @@
     .tabs a:last-child {
       margin-right: 0;
     }
+    /* Base styles */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Desktop styles */
+    @media (min-width: 768px) {
+      .tabs {
+        display: flex;
+      }
+
+      .tabs a {
+        flex: 1;
+        text-align: center;
+      }
+
+      .content {
+        display: flex;
+      }
+
+      .content section {
+        flex: 1;
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 767px) {
+      .tabs a {
+        display: block;
+        text-align: left;
+      }
+
+      .content section {
+        display: none;
+      }
+
+      .content section.active {
+        display: block;
+      }
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -138,19 +180,18 @@
     </div>
     <div class="content">
       <section id="home" class="active">
-          <h1>SPTSWARE</h1>
+        <h1>SPTSWARE</h1>
         <h2>FREE & KEYLESS</h2>
       </section>
 
       <section id="info">
         <h3>INFORMATION</h3>
-        <h4>SPTSWARE IS A FREE & KEYLESS HUB MADE SPECIALLY FOR SPTS GAMES</h4>
+        <h4>INFORMATION</h4>
       </section>
 
       <section id="credits">
         <h5>CREDITS</h5>
-         <h6>ieric#1339 - Founder & Scripter</h6>
-         <h6>Discord - discord.gg/qjq33T2sDe</h6>
+        <h6>ieric#1339 - Founder & Scripter</h6>
       </section>
     </div>
   </div>
