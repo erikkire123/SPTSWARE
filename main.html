@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>SPTSWARE</title>
   <style>
-         body {
+    body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -60,6 +59,16 @@
       text-align: center;
       text-shadow: #b5001e 0px 0px 7px;
     }
+     h7 {
+      font-size: 35px;
+      text-align: center;
+      text-shadow: #1ecefa 0px 0 10px;
+    }
+     h8 {
+      font-size: 20px;
+      text-align: center;
+      text-shadow: #1ec0e8 0px 0px 7px;
+    }
     
     .content section {
       display: none;
@@ -87,12 +96,11 @@
       display: flex;
       justify-content: flex-end;
       margin-bottom: 100px;
-      text-shadow: #fafafa 0px 0px 6px;
+      
     }
   
    
     .tabs a {
-      box-shadow: 0px 0px 10px 0.5px #e6e6e6;
       margin-top: 50px;
       margin-right: 30px;
       background-color: #080808;
@@ -105,92 +113,79 @@
     }
 
 
+    .info {
+      box-shadow: 0px 0px 10px 1px #0e1299;
+      margin-top: 50px;
+      margin-right: 30px;
+      background-color: #080808;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+      border-radius: 7px;
+      font-weight: bold;
+      text-shadow: #0e1299 0px 0 10px;
+    }
+    .info:hover{
+            box-shadow: 0px 0px 15px 2px #0e1299;
+    }
+
+    .home {
+      box-shadow: 0px 0px 10px 1px #FFD700;
+      margin-top: 50px;
+      margin-right: 30px;
+      background-color: #080808;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+      border-radius: 7px;
+      font-weight: bold;
+      text-shadow: #FFD700 0px 0 10px;
+    }
+
+ .home:hover{
+            box-shadow: 0px 0px 15px 2px #FFD700;
+    }
+    
+    .Credits {
+        box-shadow: 0px 0px 10px 1px #ff1f44;
+      margin-top: 50px;
+      margin-right: 30px;
+      background-color: #080808;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+      border-radius: 7px;
+      font-weight: bold;
+      text-shadow: #ff1f44 0px 0 10px;
+    }
+ .Credits:hover{
+            box-shadow: 0px 0px 15px 2px #ff1f44;
+    }
+    
+     .Games {
+      box-shadow: 0px 0px 10px 1px #1ecefa;
+      margin-top: 50px;
+      margin-right: 30px;
+      background-color: #080808;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+      border-radius: 7px;
+      font-weight: bold;
+      text-shadow: #1ecefa 0px 0 10px;
+    }
+ .Games:hover{
+            box-shadow: 0px 0px 15px 2px #1ecefa;
+    }
+    
     .tabs a:last-child {
       margin-right: 0;
     }
-    /* Base styles */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* Desktop styles */
-    @media (min-width: 768px) {
-      .tabs {
-        display: flex;
-      }
-
-      .tabs a {
-        flex: 1;
-        text-align: center;
-      }
-
-      .content {
-        display: flex;
-      }
-
-      .content section {
-        flex: 1;
-      }
-    }
-
-    /* Mobile styles */
-    @media (max-width: 767px) {
-      .tabs a {
-        display: block;
-        text-align: left;
-      }
-
-      .content section {
-        display: none;
-      }
-
-      .content section.active {
-        display: block;
-      }
-    }
-    /* Base styles */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* Desktop styles */
-    @media (min-width: 768px) {
-      .tabs {
-        display: flex;
-        justify-content: center;
-      }
-
-      .tabs a {
-        flex: 1;
-        text-align: center;
-      }
-
-      .content {
-        display: flex;
-      }
-
-      .content section {
-        flex: 1;
-      }
-    }
-
-    /* Mobile styles */
-    @media (max-width: 767px) {
-      .tabs a {
-        display: block;
-        text-align: left;
-      }
-
-      .content section {
-        display: none;
-      }
-
-      .content section.active {
-        display: block;
-      }
-    }
+    
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -216,24 +211,43 @@
 <body>
   <div class="container">
     <div class="tabs">
-      <a href="#home">HOME</a>
-      <a href="#info">INFO</a>
-      <a href="#credits">CREDITS</a>
+      <a href="#home" class = "home" >HOME</a>
+      <a href="#info" class = "info" >INFO</a>
+      <a href="#games" class = "Games" >GAMES</a>
+      <a href="#credits" class = "Credits">CREDITS</a>
     </div>
     <div class="content">
       <section id="home" class="active">
-        <h1>SPTSWARE</h1>
+          <h1>SPTSWARE</h1>
         <h2>FREE & KEYLESS</h2>
       </section>
 
       <section id="info">
         <h3>INFORMATION</h3>
-        <h4>INFORMATION</h4>
+        <h4>SPTSWARE IS A FREE & KEYLESS HUB MADE SPECIALLY FOR SPTS GAMES</h4>
+        <h3>
+      SCRIPT
+        </h3>
+        
+     <h4>
+      loadstring(game:HttpGet('https://sptsware.vercel.app/script'))()</h4>
       </section>
-
+      
+ <section id="games">
+         <h7>GAMES SUPPORTED</h7><ul></ul>
+         <h8>⋇ SPTS:AU ⋇</h8><ul></ul>
+         <h8>⋇ SPTS:ENDLESS ⋇</h8><ul></ul>
+         <h7>UPCOMING GAMES</h7><ul></ul>
+         <h8>⋇ SPTS:ORIGIN ⋇</h8><ul></ul>
+         <h8>⋇ SPFS ⋇</h8><ul></ul>
+         <h8>⋇ SHTS ⋇</h8><ul></ul>
+         <h8>⋇ SPES ⋇</h8><ul></ul>
+      </section>
+      
       <section id="credits">
         <h5>CREDITS</h5>
-        <h6>ieric#1339 - Founder & Scripter</h6>
+         <h6>ieric#1339 - Founder & Scripter</h6>
+         <h6>Discord - discord.gg/qjq33T2sDe</h6>
       </section>
     </div>
   </div>
