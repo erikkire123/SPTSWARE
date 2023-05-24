@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SPTSWARE</title>
+  <title>Your Website</title>
   <style>
-      body {
+         body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -118,6 +118,48 @@
     @media (min-width: 768px) {
       .tabs {
         display: flex;
+      }
+
+      .tabs a {
+        flex: 1;
+        text-align: center;
+      }
+
+      .content {
+        display: flex;
+      }
+
+      .content section {
+        flex: 1;
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 767px) {
+      .tabs a {
+        display: block;
+        text-align: left;
+      }
+
+      .content section {
+        display: none;
+      }
+
+      .content section.active {
+        display: block;
+      }
+    }
+    /* Base styles */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Desktop styles */
+    @media (min-width: 768px) {
+      .tabs {
+        display: flex;
+        justify-content: center;
       }
 
       .tabs a {
