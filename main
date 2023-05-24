@@ -3,7 +3,7 @@
 <head>
   <title>Your Website</title>
   <style>
-       body {
+      body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -115,8 +115,7 @@
       const sections = document.querySelectorAll('.content section');
 
       links.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
+        link.addEventListener('click', function() {
           const targetId = this.getAttribute('href').substring(1);
           const targetSection = document.getElementById(targetId);
 
