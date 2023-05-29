@@ -1,0 +1,184 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Website</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      z-index: 1;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+    }
+
+    nav ul li {
+      margin: 0 30px;
+      position: relative;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 30px;
+      transition: background-color 0.3s, box-shadow 0.3s, color 0.3s; /* Add color transition */
+    }
+
+    nav ul li a:hover {
+      background-color: #ffffff; /* Update the background color on hover */
+      box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.4); /* Add a glow effect on hover */
+      color: black; /* Change text color to black on hover */
+    }
+
+    nav ul li a:active {
+      background-color: #ffffff; /* Update the background color on active state */
+      box-shadow: 0px 0px 13px 7px rgba(255, 255, 255, 0.6); /* Add a stronger glow effect on active state */
+      color: black; /* Change text color to black on active state */
+    }
+
+    /* Content Styles */
+    .content {
+      display: none; /* Hide all content sections by default */
+      padding: 20px;
+      margin-top: 80px;
+      text-align: center;
+      opacity: 0; /* Add initial opacity for fade-in effect */
+      transition: backdrop-filter 0.5s, opacity 0.5s; /* Add transitions for motion blur and opacity */
+      backdrop-filter: blur(0); /* Initial blur value */
+    }
+
+    .content.active {
+      display: block; /* Show active content section */
+      backdrop-filter: blur(10px); /* Apply motion blur to active section */
+      opacity: 1; /* Make active section fully opaque */
+    }
+
+    .content.inactive {
+      display: none; /* Hide inactive content sections */
+    }
+
+    /* Animation */
+    .fade-in {
+      animation: fadeIn 1s forwards;
+    }
+
+    .slide-up {
+      animation: slideUp 0.8s forwards;
+    }
+
+    .zoom-in {
+      animation: zoomIn 0.8s forwards;
+    }
+
+    .fade-out {
+      animation: fadeOut 0.5s forwards;
+    }
+
+    /* Keyframes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="content fade-in zoom-in active" id="home">
+    <h1>Welcome to the Home Page</h1>
+    <p>This is the home page content.</p>
+  </div>
+  <div class="content slide-up zoom-in inactive" id="about">
+    <h1>About Us</h1>
+    <p>This is the about page content.</p>
+  </div>
+  <div class="content fade-in zoom-in inactive" id="contact">
+    <h1>Contact Us</h1>
+    <p>This is the contact page content.</p>
+  </div>
+  <script>
+    // Smooth scroll to anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+
+        if (!targetSection.classList.contains('active')) {
+          const currentSection = document.querySelector('.content.active');
+          currentSection.classList.remove('active');
+          currentSection.classList.add('inactive');
+          targetSection.classList.remove('inactive');
+          targetSection.classList.add('active');
+        }
+
+        targetSection.scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+ 
