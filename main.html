@@ -1,258 +1,184 @@
-<html>
-  <link rel="icon" href="https://media.discordapp.net/attachments/919664904485634088/1111279823986372618/HD_transparent_picture.png">
-
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPTSWARE</title>
   <style>
-  
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #000;
-      color: #fff;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      z-index: 1;
     }
 
-    .container {
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
+      height: 60px;
     }
 
+    nav ul li {
+      margin: 0 30px;
+      position: relative;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 30px;
+      transition: background-color 0.3s, box-shadow 0.3s, color 0.3s; /* Add color transition */
+    }
+
+    nav ul li a:hover {
+      background-color: #ffffff; /* Update the background color on hover */
+      box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.4); /* Add a glow effect on hover */
+      color: black; /* Change text color to black on hover */
+    }
+
+    nav ul li a:active {
+      background-color: #ffffff; /* Update the background color on active state */
+      box-shadow: 0px 0px 13px 7px rgba(255, 255, 255, 0.6); /* Add a stronger glow effect on active state */
+      color: black; /* Change text color to black on active state */
+    }
+
+    /* Content Styles */
     .content {
-      flex: 1;
+      display: none; /* Hide all content sections by default */
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin-top: 80px;
+      text-align: center;
+      opacity: 0; /* Add initial opacity for fade-in effect */
+      transition: backdrop-filter 0.5s, opacity 0.5s; /* Add transitions for motion blur and opacity */
+      backdrop-filter: blur(0); /* Initial blur value */
     }
 
-    h1 {
-      text-shadow: #FFD700 0px 0 10px;
-      font-size: 35px;
-      text-align: center;
-    }
-    
-     h2 {
-      font-size: 20px;
-      text-align: center;
-      text-shadow: #2eff66 0px 0px 7px;
-    }
-    
- h3 {
-      font-size: 35px;
-      text-align: center;
-      text-shadow: #0e1299 0px 0 10px;
-    }
-     h4 {
-      font-size: 20px;
-      text-align: center;
-      text-shadow: #080ed1 0px 0px 7px;
-    }
-    
-     h5 {
-      font-size: 35px;
-      text-align: center;
-      text-shadow: #ff1f44 0px 0 10px;
-    }
-     h6 {
-      font-size: 20px;
-      text-align: center;
-      text-shadow: #b5001e 0px 0px 7px;
-    }
-     h7 {
-      font-size: 35px;
-      text-align: center;
-      text-shadow: #1ecefa 0px 0 10px;
-    }
-     h8 {
-      font-size: 20px;
-      text-align: center;
-      text-shadow: #1ec0e8 0px 0px 7px;
-    }
-    
-    .content section {
-      display: none;
-      text-align: center;
+    .content.active {
+      display: block; /* Show active content section */
+      backdrop-filter: blur(10px); /* Apply motion blur to active section */
+      opacity: 1; /* Make active section fully opaque */
     }
 
-    .content section.active {
-      display: block;
-      animation: fade-in 0.8s ease-in-out;
+    .content.inactive {
+      display: none; /* Hide inactive content sections */
     }
 
-    @keyframes fade-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    /* Animation */
+    .fade-in {
+      animation: fadeIn 1s forwards;
     }
 
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 24px;
+    .slide-up {
+      animation: slideUp 0.8s forwards;
+    }
+
+    .zoom-in {
+      animation: zoomIn 0.8s forwards;
+    }
+
+    .fade-out {
+      animation: fadeOut 0.5s forwards;
+    }
+
+    /* Keyframes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
-    
-    .tabs {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 100px;
-      
-    }
-  
-   
-    .tabs a {
-      margin-top: 50px;
-      margin-right: 30px;
-      background-color: #080808;
-      padding: 10px 20px;
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-      border-radius: 7px;
-      font-weight: bold;
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-
-    .info {
-      box-shadow: 0px 0px 10px 1px #0e1299;
-      margin-top: 50px;
-      margin-right: 30px;
-      background-color: #080808;
-      padding: 10px 20px;
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-      border-radius: 7px;
-      font-weight: bold;
-      text-shadow: #0e1299 0px 0 10px;
-    }
-    .info:hover{
-            box-shadow: 0px 0px 15px 2px #0e1299;
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
-    .home {
-      box-shadow: 0px 0px 10px 1px #FFD700;
-      margin-top: 50px;
-      margin-right: 30px;
-      background-color: #080808;
-      padding: 10px 20px;
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-      border-radius: 7px;
-      font-weight: bold;
-      text-shadow: #FFD700 0px 0 10px;
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
     }
-
- .home:hover{
-            box-shadow: 0px 0px 15px 2px #FFD700;
-    }
-    
-    .Credits {
-        box-shadow: 0px 0px 10px 1px #ff1f44;
-      margin-top: 50px;
-      margin-right: 30px;
-      background-color: #080808;
-      padding: 10px 20px;
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-      border-radius: 7px;
-      font-weight: bold;
-      text-shadow: #ff1f44 0px 0 10px;
-    }
- .Credits:hover{
-            box-shadow: 0px 0px 15px 2px #ff1f44;
-    }
-    
-     .Games {
-      box-shadow: 0px 0px 10px 1px #1ecefa;
-      margin-top: 50px;
-      margin-right: 30px;
-      background-color: #080808;
-      padding: 10px 20px;
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-      border-radius: 7px;
-      font-weight: bold;
-      text-shadow: #1ecefa 0px 0 10px;
-    }
- .Games:hover{
-            box-shadow: 0px 0px 15px 2px #1ecefa;
-    }
-    
-    .tabs a:last-child {
-      margin-right: 0;
-    }
-    
   </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="content fade-in zoom-in active" id="home">
+    <h1>Welcome to the Home Page</h1>
+    <p>This is the home page content.</p>
+  </div>
+  <div class="content slide-up zoom-in inactive" id="about">
+    <h1>About Us</h1>
+    <p>This is the about page content.</p>
+  </div>
+  <div class="content fade-in zoom-in inactive" id="contact">
+    <h1>Contact Us</h1>
+    <p>This is the contact page content.</p>
+  </div>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const links = document.querySelectorAll('.tabs a');
-      const sections = document.querySelectorAll('.content section');
+    // Smooth scroll to anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
 
-      links.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetSection = document.getElementById(targetId);
-
-          sections.forEach(function(section) {
-            section.classList.remove('active');
-          });
-
+        if (!targetSection.classList.contains('active')) {
+          const currentSection = document.querySelector('.content.active');
+          currentSection.classList.remove('active');
+          currentSection.classList.add('inactive');
+          targetSection.classList.remove('inactive');
           targetSection.classList.add('active');
+        }
+
+        targetSection.scrollIntoView({
+          behavior: 'smooth'
         });
       });
     });
   </script>
-</head>
-<body>
-  <div class="container">
-    <div class="tabs">
-      <a href="#home" class = "home" >HOME</a>
-      <a href="#info" class = "info" >INFO</a>
-      <a href="#games" class = "Games" >GAMES</a>
-      <a href="#credits" class = "Credits">CREDITS</a>
-    </div>
-    <div class="content">
-      <section id="home" class="active">
-          <h1>SPTSWARE</h1>
-        <h2>FREE & KEYLESS</h2>
-      </section>
-
-      <section id="info">
-        <h3>INFORMATION</h3>
-        <h4>SPTSWARE IS A FREE & KEYLESS HUB MADE SPECIALLY FOR SPTS GAMES</h4>
-        <h3>
-      SCRIPT
-        </h3>
-        
-     <h4>
-      loadstring(game:HttpGet('https://sptsware.vercel.app/script'))()</h4>
-      </section>
-      
- <section id="games">
-         <h7>GAMES SUPPORTED</h7><ul></ul>
-         <h8>⋇ SPTS:AU ⋇</h8><ul></ul>
-         <h8>⋇ SPTS:ENDLESS ⋇</h8><ul></ul>
-         <h7>UPCOMING GAMES</h7><ul></ul>
-         <h8>⋇ SPTS:ORIGIN ⋇</h8><ul></ul>
-         <h8>⋇ SPFS ⋇</h8><ul></ul>
-         <h8>⋇ SHTS ⋇</h8><ul></ul>
-         <h8>⋇ SPES ⋇</h8><ul></ul>
-      </section>
-      
-      <section id="credits">
-        <h5>CREDITS</h5>
-         <h6>ieric#1339 - Founder & Scripter</h6>
-         <h6>Discord - discord.gg/qjq33T2sDe</h6>
-      </section>
-    </div>
-  </div>
 </body>
 </html>
+ 
