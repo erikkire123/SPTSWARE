@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Whitelisting Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    body {
+      background-color: #f1f1f1;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    .user-hwid-container {
+      filter: blur(2px);
+      cursor: pointer;
+    }
+
+    .user-hwid-container.unblur {
+      filter: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Whitelisting Dashboard</h1>
+    <form id="addForm">
+      <input type="text" id="nameInput" placeholder="Name" required>
+      <input type="text" id="hwidInput" placeholder="HWID" required>
+      <button type="submit">Add</button>
+    </form>
+    <h2>Whitelisted Users</h2>
+    <ul id="userList"></ul>
+    <div id="databaseLink"></div> <!-- New element to display the database link -->
+  </div>
+
+  <script>
+    // Define an array to store the whitelisted users
+    var userList = [];
+
+    // Function to toggle blur on the HWID element
+    function toggleBlur(index) {
+      var hwidContainers = document.getElementsByClassName("user-hwid-container");
+      var hwidContainer = hwidContainers[index];
+
+      if (hwidContainer.classList.contains("unblur")) {
+        // Remove blur
+        hwidContainer.classList.remove("unblur");
+      } else {
+        // Add blur
+        hwidContainer.classList.add("unblur");
+      }
+    }
+
+    // Function to add a user to the whitelist
+    function addUser() {
+      var name = document.getElementById("nameInput").value;
+      var hwid = document.getElementById("hwidInput").value;
+
+      // Create a new user object
+      var user = {
+        name: name,
+        hwid: hwid
+      };
+
+      // Add the user to the list
+      userList.push(user);
+
+      // Clear the input fields
+      document.getElementById("nameInput").value = "";
+      document.getElementById("hwidInput").value = "";
+
+      // Update the user list display
+      updateUserList();
+      displayDatabaseLink(getPasteURL());
+      updatePasteData();
+    }
+
+    // Function to remove a user from the whitelist
+    function removeUser(index) {
+      userList.splice(index, 1);
+      updateUserList();
+      displayDatabaseLink(getPasteURL());
+      updatePasteData();
+    }
+
+    // Function to update the user list display
+    function updateUserList() {
+      var list = document.getElementById("userList");
+      list.innerHTML = "";
+
+      // Iterate over the userList array and create list items
+      for (var i = 0; i < userList.length; i++) {
+        var user = userList[i];
+        var listItem = document.createElement("li");
+
+        var nameContainer = document.createElement("div");
+        nameContainer.className = "user-container";
+        var nameLine = document.createElement("span");
+        nameLine.className = "user-name";
+        nameLine.textContent = user.name;
+        nameContainer.appendChild(nameLine);
+
+        var hwidContainer = document.createElement("div");
+        hwidContainer.className = "user-container";
+        var hwidLine = document.createElement("span");
+        hwidLine.className = "user-hwid user-hwid-container";
+        hwidLine.textContent = user.hwid;
+        hwidLine.addEventListener("click", function() {
+          var index = Array.prototype.indexOf.call(hwidContainers, this.parentElement);
+          toggleBlur(index);
+        });
+        hwidContainer.appendChild(hwidLine);
+
+        var actionContainer = document.createElement("div");
+        actionContainer.className = "user-container";
+        var removeButton = document.createElement("button");
+        removeButton.innerHTML = "Remove";
+        removeButton.className = "remove-button";
+        removeButton.setAttribute("data-index", i);
+        removeButton.addEventListener("click", function() {
+          var index = this.getAttribute("data-index");
+          removeUser(index);
+        });
+        actionContainer.appendChild(removeButton);
+
+        listItem.appendChild(nameContainer);
+        listItem.appendChild(hwidContainer);
+        listItem.appendChild(actionContainer);
+        list.appendChild(listItem);
+      }
+    }
+
+    // Function to display the link to the Pastebin database
+    function displayDatabaseLink(pasteURL) {
+      var databaseLink = document.getElementById("databaseLink");
+      databaseLink.innerHTML = "Database Link: <a href='" + pasteURL + "' target='_blank'>" + pasteURL + "</a>";
+    }
+
+    // Function to update the paste data
+    function updatePasteData() {
+      // Create the paste data
+      var pasteData = JSON.stringify(userList);
+
+      // Do something with the paste data (e.g., update the database)
+      console.log("Paste data updated:", pasteData);
+    }
+
+    // Function to retrieve the existing paste URL from the database link
+    function getPasteURL() {
+      var databaseLink = document.getElementById("databaseLink");
+      var linkElement = databaseLink.querySelector("a");
+      return linkElement ? linkElement.href : "";
+    }
+
+    // Add form submit event listener
+    var addForm = document.getElementById("addForm");
+    addForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      addUser();
+    });
+  </script>
+</body>
+</html>
